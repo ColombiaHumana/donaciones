@@ -1,5 +1,8 @@
 ---
 es:
+  donator:
+    pagado:
+      donation_received: Muchas gracias por tu aporte
   helper:
     submit:
       donator:
