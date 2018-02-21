@@ -11,7 +11,7 @@ $(document).ready(function() {
   data = {
     name: "Donaciones Colombia Humana",
     description: "Donación campaña Gustavo Petro",
-    invoice: "1",
+    invoice: "<%= @donator.slug %>",
     currency: "cop",
     amount: '<%= @donator.amount %>',
     lang: "es",
@@ -25,9 +25,7 @@ $(document).ready(function() {
     address_billing: "<%= @donator.address %>",
     type_doc_billing: "<%= @donator.doctype %>",
     number_doc_billing: "<%= @donator.document %>",
-    mobilephone_billing: "<%= @donator.mobilephone %>",
-    extra1: "<%= @donator.slug %>",
-
+    mobilephone_billing: "<%= @donator.mobilephone %>"
   };
   handler.open(data);
   $('#boton_pagar').on('click', function() {
