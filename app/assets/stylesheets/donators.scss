@@ -1,7 +1,16 @@
 // Place all the styles related to the Donators controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin x-appearance ($value) {
+	-webkit-appearance: $value;
+	   -moz-appearance: $value;
+	        appearance: $value;
+}
 #amount_holder{
   font-size: 24px;
   text-align: center;
+}
+select{
+  @include x-appearance(none);
 }
