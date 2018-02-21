@@ -15,7 +15,7 @@ es:
         document: N° de Cédula
         firstname: Nombres
         lastname: Apellidos
-        rut_image: RUT escaneado
+        rut_image: RUT Escaneado
         mobilephone: Teléfono
         address: Dirección
     create: Realizar donación
