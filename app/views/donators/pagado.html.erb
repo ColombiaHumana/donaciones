@@ -1,0 +1,42 @@
+<div class="grid-x">
+  <div class="cell small-4 small-offset-4">
+  <div class="card">
+    <div class="card-section">
+      <%= form_with(model: @donator, local: true) do |form| %>
+        <% if params[:ref_payco] %>
+          <div class="callout success">
+            <h5><%= t('.donation_received') %></h5>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.text_field :document, id: :donator_document, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :firstname, id: :donator_firstname, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :lastname, id: :donator_lastname, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :x_ref_payco, id: :donator_ref_payco, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :x_approval_code, id: :donator_approval_code, disabled: true %>
+        </div>
+
+        <div class="field">
+          <label>Monto</label>
+          <p id="amount_holder"><%= "$ #{@donator.amount}" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+</div>

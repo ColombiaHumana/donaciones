@@ -1,0 +1,80 @@
+
+<script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var data, directionField, handler, slider;
+  handler = ePayco.checkout.configure({
+    key: "45b960805ced5c27ce34b1600b4b9f54",
+    test: true
+  });
+  data = {
+    name: "Donaciones Colombia Humana",
+    description: "Donación campaña Gustavo Petro",
+    invoice: "1",
+    currency: "cop",
+    amount: '<%= @donator.amount %>',
+    lang: "es",
+    country: "co",
+    tax: "0",
+    tax_base: "0",
+    confirmation: "<%=url_for donator_url(@donator.slug)%>",
+    response: "<%=url_for donator_url(@donator.slug)%>",
+    name_billing: "<%= "#{@donator.firstname} #{@donator.lastname}" %>",
+    email_billing: "<%= @donator.email %>",
+    address_billing: "<%= @donator.address %>",
+    type_doc_billing: "<%= @donator.doctype %>",
+    number_doc_billing: "<%= @donator.document %>",
+    mobilephone_billing: "<%= @donator.mobilephone %>",
+    extra1: "<%= @donator.slug %>",
+
+  };
+  handler.open(data);
+  $('#boton_pagar').on('click', function() {
+    return handler.open(data);
+  });
+});
+</script>
+<div class="grid-x">
+  <div class="cell small-4 small-offset-4">
+  <div class="card">
+    <div class="card-section">
+      <%= form_with(model: @donator, local: true) do |form| %>
+        <% if @donator.errors.any? %>
+          <div class="callout alert">
+            <h5><%= t('.error') %></h5>
+
+            <ul>
+            <% @donator.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.text_field :document, id: :donator_document, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :firstname, id: :donator_firstname, disabled: true %>
+        </div>
+
+        <div class="field">
+          <%= form.text_field :lastname, id: :donator_lastname, disabled: true %>
+        </div>
+
+        <div class="field">
+          <label>Monto</label>
+          <p id="amount_holder"><%= "$ #{@donator.amount}" %></p>
+        </div>
+        <div class="actions">
+          <%= form.button "Realizar Donación", type: 'button', class: "button expanded", id: "boton_pagar"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+</div>

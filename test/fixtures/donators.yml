@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctype: MyString
+  document: MyString
+  firstname: MyString
+  lastname: MyString
+  rut_image: MyString
+  doc_image: MyString
+  amount: 1.5
+
+two:
+  doctype: MyString
+  document: MyString
+  firstname: MyString
+  lastname: MyString
+  rut_image: MyString
+  doc_image: MyString
+  amount: 1.5

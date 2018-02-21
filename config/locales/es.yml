@@ -1,18 +1,10 @@
 ---
-en:
-  donator:
-    buttons:
-      create: Crear
+es:
   helper:
     submit:
-      donators:
+      donator:
         create: Realizar donación
   activerecord:
-    errors:
-      template:
-        header:
-          one: 1 error impide que la donación sea realizada
-          other: "%{count} errores impiden que la donación sea realizada"
     attributes:
       donator:
         doc_image: Documento escaneado
@@ -21,9 +13,12 @@ en:
         firstname: Nombres
         lastname: Apellidos
         rut_image: RUT escaneado
+        mobilephone: Teléfono
+        address: Dirección
     create: Realizar donación
     errors:
       template:
-        one: 1 error impide que la donación sea realizada
-        other: "%{count} errores impiden que la donación sea realizada"
+        header:
+          one: 1 error impide que la donación sea realizada
+          other: "%{count} errores impiden que la donación sea realizada"
   hello: Hello world

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Donators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Doctype</th>
+      <th>Document</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Rut image</th>
+      <th>Doc image</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donators.each do |donator| %>
+      <tr>
+        <td><%= donator.doctype %></td>
+        <td><%= donator.document %></td>
+        <td><%= donator.firstname %></td>
+        <td><%= donator.lastname %></td>
+        <td><%= donator.rut_image %></td>
+        <td><%= donator.doc_image %></td>
+        <td><%= donator.amount %></td>
+        <td><%= link_to 'Show', donator %></td>
+        <td><%= link_to 'Edit', edit_donator_path(donator) %></td>
+        <td><%= link_to 'Destroy', donator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donator', new_donator_path %>

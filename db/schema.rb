@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180217161532) do
+ActiveRecord::Schema.define(version: 20180221042104) do
 
   create_table "donations", force: :cascade do |t|
     t.string "epayco_ref"
@@ -31,6 +31,36 @@ ActiveRecord::Schema.define(version: 20180217161532) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["epayco_ref"], name: "index_donations_on_epayco_ref"
+  end
+
+  create_table "donators", force: :cascade do |t|
+    t.string "doctype"
+    t.string "document"
+    t.string "firstname"
+    t.string "lastname"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "rut_image_file_name"
+    t.string "rut_image_content_type"
+    t.integer "rut_image_file_size"
+    t.datetime "rut_image_updated_at"
+    t.string "doc_image_file_name"
+    t.string "doc_image_content_type"
+    t.integer "doc_image_file_size"
+    t.datetime "doc_image_updated_at"
+    t.string "slug"
+    t.string "mobilephone"
+    t.string "address"
+    t.string "status", default: "PRE"
+    t.boolean "payed", default: false
+    t.string "email"
+    t.string "x_ref_payco"
+    t.string "x_transaction_id"
+    t.string "x_signature"
+    t.string "x_cod_response"
+    t.string "x_approval_code"
+    t.index ["slug"], name: "index_donators_on_slug", unique: true
   end
 
 end

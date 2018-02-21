@@ -13,7 +13,6 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -29,7 +28,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'i18n-tasks', '~> 0.9.20'
 gem 'rest-client'
+gem "paperclip", "~> 5.2.1"
+gem 'foundation-rails', '~> 6.4', '>= 6.4.1.3'
+gem 'foundation_rails_helper'
+gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
