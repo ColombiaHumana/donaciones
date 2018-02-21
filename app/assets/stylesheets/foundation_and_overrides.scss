@@ -6,19 +6,13 @@
 // If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
 //
 @import 'motion-ui/motion-ui';
-$foundation-palette: (
-  primary: #6d356f,
-  secondary: #767676,
-  success: #3adb76,
-  warning: #ffae00,
-  alert: #cc4b37,
-);
+
 // We include everything by default.  To slim your CSS, remove components you don't use.
 @include add-foundation-colors;
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
 //@include foundation-grid;
-//@include foundation-flex-grid;
+@include foundation-flex-grid;
 @include foundation-flex-classes;
 @include foundation-typography;
 @include foundation-forms;
