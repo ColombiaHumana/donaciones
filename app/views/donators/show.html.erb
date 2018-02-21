@@ -18,7 +18,7 @@ $(document).ready(function() {
     country: "co",
     tax: "0",
     tax_base: "0",
-    confirmation: "<%=url_for donator_url(@donator.slug)%>",
+    confirmation: "<%=url_for pagado_url(@donator.slug)%>",
     response: "<%=url_for pagado_callback_url(@donator.slug)%>",
     name_billing: "<%= "#{@donator.firstname} #{@donator.lastname}" %>",
     email_billing: "<%= @donator.email %>",
