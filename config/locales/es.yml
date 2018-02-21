@@ -10,9 +10,9 @@ es:
   activerecord:
     attributes:
       donator:
-        doc_image: Documento escaneado
+        doc_image: CC Escaneada
         doctype: Tipo de documento
-        document: N° de documento
+        document: N° de Cédula
         firstname: Nombres
         lastname: Apellidos
         rut_image: RUT escaneado
