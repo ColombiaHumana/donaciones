@@ -14,10 +14,6 @@
       <% end %>
 
       <div class="field">
-        <%= form.select :doctype, options_for_select({'Cédula de ciudadanía' => 'CC'}, 'CC'), id: :donator_doctype %>
-      </div>
-
-      <div class="field">
         <%= form.text_field :document, id: :donator_document %>
       </div>
 
@@ -42,11 +38,11 @@
       </div>
 
       <div class="field">
-        <%= form.file_field :rut_image, id: :donator_rut_image %>
+        <%= form.file_field :rut_image, id: :donator_rut_image, accept: 'image/png,image/gif,image/jpeg,application/pdf' %>
       </div>
 
       <div class="field">
-        <%= form.file_field :doc_image, id: :donator_doc_image %>
+        <%= form.file_field :doc_image, id: :donator_doc_image, accept: 'image/png,image/gif,image/jpeg,application/pdf' %>
       </div>
       <div class="field">
         <label>Monto</label>
