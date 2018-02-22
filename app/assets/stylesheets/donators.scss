@@ -14,3 +14,19 @@
 select{
   @include x-appearance(none);
 }
+#declaracion h4{
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #622066;
+}
+#declaracion p{
+  font-size: 14px;
+  text-align: justify;
+}
+#declaracion label{
+  color: #622066;
+  font-weight: bold;
+}
+#formulario{
+  display: none;
+}

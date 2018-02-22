@@ -4,3 +4,8 @@
 $(document).ready ->
   $('.slider').on 'moved.zf.slider', ->
     $('#amount_holder').html "$ "+$(this).children('.slider-handle').attr('aria-valuenow')
+  $('#check_acepto').on 'click', ->
+    if $('#check_acepto').prop 'checked'
+      $('#formulario').show()
+    else
+      $('#formulario').hide()

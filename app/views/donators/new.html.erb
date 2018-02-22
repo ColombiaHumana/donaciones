@@ -1,6 +1,12 @@
 
 <div class="grid-x grid-padding-x align-center">
   <div class="cell small-12 medium-6 large-5">
+    <div id="declaracion" class="callout large">
+      <h4>Declaración de Donaciones</h4>
+      <p>Declaro que el aporte dinerario que entrego como DONACIÓN O CONTRIBUCIÓN proviene de actividades licitas emanadas de mi actividad, además que no poseo a la fecha ningún impedimento legal con respecto a las causales establecidas en el Art. 27 de la Ley 1475 de 2011 y que en mis actividades profesionales no tengo ningún nexo con grupos al margen de la ley. La anterior declaración la hago con el objeto de dar cumplimiento a lo estipulado en el Artículo 15 de la Ley 130 de 1.994 y a los requerimientos establecidos en las Resoluciones 330 de 2007 y 3097 de 2013 del Consejo Nacional Electoral, referentes a la identidad y domicilio de los contribuyentes a campañas electorales.</p>
+      <input type="checkbox" id="check_acepto">
+      <label for="check_acepto">Acepto la Declaración de Donaciones</label>
+    </div>
     <%= render 'form', donator: @donator %>
   </div>
 </div>
