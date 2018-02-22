@@ -20,7 +20,7 @@ select{
   color: #622066;
 }
 #declaracion p{
-  font-size: 14px;
+  font-size: 13px;
   text-align: justify;
 }
 #declaracion label{
@@ -29,4 +29,18 @@ select{
 }
 #formulario{
   display: none;
+}
+
+#declaracion, .card{
+  background-color: #f6f6f6;
+  border: 1px solid rgba(10, 10, 10, 0.25);
+}
+.card{
+  padding: 2rem;
+}
+#formulario{
+  display: none;
+}
+#formulario textarea{
+  min-height: 100px;
 }

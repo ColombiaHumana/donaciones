@@ -7,5 +7,7 @@ $(document).ready ->
   $('#check_acepto').on 'click', ->
     if $('#check_acepto').prop 'checked'
       $('#formulario').show()
+      $('#declaracion_text').hide()
     else
       $('#formulario').hide()
+      $('#declaracion_text').show()
