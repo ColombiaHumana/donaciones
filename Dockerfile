@@ -1,6 +1,6 @@
 from ruby:2.5.0
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs imagemagick
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs imagemagick ghostscript libtool
 RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
