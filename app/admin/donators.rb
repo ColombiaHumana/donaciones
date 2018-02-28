@@ -14,15 +14,16 @@ ActiveAdmin.register Donator do
   actions :index, :show
 
   index do
+    column("Verificado"){|donator| status_tag(donator.validated) }
     column :document
     column :firstname
     column :lastname
     column :amount
-    actions
+    actions 
   end
 
   member_action :lock, method: :put do
-    resource.update validated: !resource.validated
+    resource.update validated: true
     DonatorMailer.validated_email(resource).deliver_later unless !resource.validated?
     redirect_to resource_path, notice: "Donacion validada!"
   end
