@@ -31,7 +31,7 @@
     <img src="https://petro.com.co/wp-content/uploads/2018/02/petroblanco_tb.png" alt="Petro Presidente"/>
   </div>
   <div id="texto">
-    <h1>Hola, <%= "#{@donator.firstname.capitalize} #{@donator.lastname.capitalize}" %></h1>
+    <h1>Hola, <%= "#{@donator.firstname.titleize} #{@donator.lastname.titleize}" %></h1>
     <p>
       Hemos podido validar tu intención de realizar una donación por un monto de <%= number_to_currency @donator.amount, locale: :en, unit: "COP $ ", separator: ",", delimiter: "." %>
 
