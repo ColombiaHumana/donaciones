@@ -12,6 +12,9 @@ class DonatorsController < ApplicationController
   def show
   end
 
+  def validating
+  end
+
   # GET /donators/new
   def new
     @donator = Donator.new
@@ -28,7 +31,7 @@ class DonatorsController < ApplicationController
 
     respond_to do |format|
       if @donator.save
-        format.html { redirect_to donator_url(@donator.slug), notice: 'Donator was successfully created.' }
+        format.html { redirect_to validating_url, notice: 'Donator was successfully created.' }
         format.json { render :show, status: :created, location: @donator }
       else
         format.html { render :new }
@@ -62,7 +65,6 @@ class DonatorsController < ApplicationController
   # end
 
   def pagado
-
 
   end
 
