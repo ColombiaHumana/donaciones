@@ -11,3 +11,9 @@ $(document).ready ->
     else
       $('#formulario').hide()
       $('#declaracion_text').show()
+  if $('#check_acepto').prop 'checked'
+    $('#formulario').show()
+    $('#declaracion_text').hide()
+  else
+    $('#formulario').hide()
+    $('#declaracion_text').show()

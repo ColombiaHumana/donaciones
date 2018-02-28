@@ -1,0 +1,13 @@
+<h1>Hola, <%= "#{@donator.firstname.capitalize} #{@donator.lastname.capitalize}" %></h1>
+<p>
+  Hemos podido validar tu intención de realizar una donación por un monto de
+  <%= number_to_currency @donator.amount, locale: :en, unit: "COP $ ", separator: ",", delimiter: "." %>,
+  agradecemos mucho tu aporte y te invitamos a continuar con el proceso para hacerlo efectivo.
+</p>
+<p>
+  Para continuar con el proceso, es necesario que visites el siguente enlace: <a href="<%= @url %>"><%= @url %></a>
+</p>
+
+<p>
+  Atte: Equipo de la Colombia Humana
+</p>
