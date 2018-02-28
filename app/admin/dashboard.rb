@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Donaciones Por Moderar" do
           table_for Donator.where(varified: false).order("id desc").limit(20) do
-            column("Estado") { |donator| status_tag(donator.status) }
+            column("Estado") { |donator| status_tag(donator.verified) }
             column("Monto") { |donator| number_to_currency donator.amount, locale: :en, unit: "$ ", separator: ",", delimiter: "."}
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Donaciones Efectivas" do
           table_for Donator.where(verified: true).order("id desc").limit(20) do
-            column("Estado") { |donator| status_tag(donator.status) }
+            column("Estado") { |donator| status_tag(donator.verified) }
             column("Monto") { |donator| number_to_currency donator.amount }
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
