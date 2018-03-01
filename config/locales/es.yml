@@ -18,6 +18,7 @@ es:
         rut_image: RUT Escaneado
         mobilephone: Teléfono
         address: Dirección
+        job: Profesion u Oficio
     create: Realizar donación
     errors:
       template:

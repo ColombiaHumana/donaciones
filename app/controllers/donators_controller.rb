@@ -83,7 +83,7 @@ class DonatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donator_params
-      params.require(:donator).permit(:doctype, :document, :firstname, :lastname, :rut_image, :doc_image, :amount, :email, :mobilephone, :address)
+      params.require(:donator).permit(:doctype, :document, :firstname, :lastname, :rut_image, :doc_image, :amount, :email, :mobilephone, :address, :job)
     end
 
     def epayco_params
