@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228041159) do
+ActiveRecord::Schema.define(version: 20180301064247) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20180228041159) do
     t.string "x_cod_response"
     t.string "x_approval_code"
     t.boolean "validated", default: false
+    t.string "job"
     t.index ["slug"], name: "index_donators_on_slug", unique: true
   end
 
