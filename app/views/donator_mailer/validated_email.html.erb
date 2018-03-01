@@ -1,13 +1,48 @@
-<h1>Hola, <%= "#{@donator.firstname.capitalize} #{@donator.lastname.capitalize}" %></h1>
-<p>
-  Hemos podido validar tu intención de realizar una donación por un monto de
-  <%= number_to_currency @donator.amount, locale: :en, unit: "COP $ ", separator: ",", delimiter: "." %>,
-  agradecemos mucho tu aporte y te invitamos a continuar con el proceso para hacerlo efectivo.
-</p>
-<p>
-  Para continuar con el proceso, es necesario que visites el siguente enlace: <a href="<%= @url %>"><%= @url %></a>
-</p>
+<style>
+  #contenedor{
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f1f1f1;
+    font-family: sans-serif;
+  }
+  #header{
+    height: 100px;
+    background: #622066;
+  }
+  #header img{
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  #texto{
+    padding: 40px;
+    text-align: justify;
+  }
+  #texto a{
+    text-decoration: none;
+    color: #3e8ede;
+  }
+</style>
 
-<p>
-  Atte: Equipo de la Colombia Humana
-</p>
+<div id="contenedor">
+  <div id="header">
+    <img src="https://petro.com.co/wp-content/uploads/2018/02/petroblanco_tb.png" alt="Petro Presidente"/>
+  </div>
+  <div id="texto">
+    <h1>Hola, <%= "#{@donator.firstname.titleize} #{@donator.lastname.titleize}" %></h1>
+    <p>
+      Hemos podido validar tu intención de realizar una donación por un monto de <%= number_to_currency @donator.amount, locale: :en, unit: "COP $ ", separator: ",", delimiter: "." %>
+
+      agradecemos mucho tu aporte y te invitamos a continuar con el proceso para hacerlo efectivo.
+    </p>
+    <p>
+      Para continuar con el proceso, es necesario que visites el siguente enlace: <a href="<%= @url %>"><%= @url %></a>
+    </p>
+
+    <p>
+      Atte: Equipo de la Colombia Humana
+    </p>
+  </div>
+</div>
