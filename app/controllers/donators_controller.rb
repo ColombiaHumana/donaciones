@@ -31,7 +31,7 @@ class DonatorsController < ApplicationController
 
     respond_to do |format|
       if @donator.save
-        DonatorMailer.moderation_email(@donator).deliver_later
+        DonatorMailer.moderation_mail(@donator).deliver_later
         format.html { redirect_to validating_url, notice: 'Donator was successfully created.' }
         format.json { render :show, status: :created, location: @donator }
 
