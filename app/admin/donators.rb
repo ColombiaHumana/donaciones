@@ -19,7 +19,7 @@ ActiveAdmin.register Donator do
     column :firstname
     column :lastname
     column :amount
-    actions 
+    actions
   end
 
   member_action :lock, method: :put do
@@ -53,8 +53,16 @@ ActiveAdmin.register Donator do
     end
     panel "Verificacion" do
       table_for(donator) do
-        column("RUT") { |donation| image_tag donation.rut_image(:medium) }
-        column("CC") { |donation| image_tag donation.doc_image(:medium) }
+        column("RUT") do |donation|
+          link_to donation.rut_image.url do
+            image_tag donation.rut_image(:medium)
+          end
+        end
+        column("CC") do |donation|
+          link_to donation.doc_image.url do
+            image_tag donation.doc_image(:medium)
+          end
+        end
       end
     end
   end
