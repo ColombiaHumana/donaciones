@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'donators#new', as: :donators
   post '/', to: 'donators#create'
   get '/validando', to: 'donators#validating', as: :validating
+  post '/update', to: 'donators#update_status', as: :update_status
   get '/:slug', to: 'donators#show', as: :donator
   patch '/:slug', to: 'donators#update', as: :update_donator
   get '/:slug/edit', to: 'donators#edit', as: :edit_donator

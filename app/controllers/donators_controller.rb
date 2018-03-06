@@ -78,6 +78,18 @@ class DonatorsController < ApplicationController
   #   end
   # end
 
+  def update_status
+    redirect_to :root unless current_admin_user
+    Donator.where('x_ref_payco != ""').each do |donator|
+      json = get_ref_payco(donator.x_ref_payco)
+      if json
+        status = STATUSES[json['data']['x_cod_response'].to_s]
+        donator.update status: status, x_cod_response: json['data']['x_cod_response']
+      end
+    end
+    redirect_to admin_donators_path, notice: "Estados Actualizados"
+  end
+
   def pagado
 
   end
@@ -103,5 +115,11 @@ class DonatorsController < ApplicationController
 
     def epayco_params
       params.permit(:x_ref_payco, :x_transaction_id, :x_signature, :x_cod_response, :x_approval_code)
+    end
+
+    def get_ref_payco(ref_payco)
+      url = "https://secure.payco.co/pasarela/estadotransaccion?id_transaccion=#{ref_payco}"
+      request = RestClient.get(url)
+      request.code == 200 ? JSON.parse(request.body) : nil
     end
 end

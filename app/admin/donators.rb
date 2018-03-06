@@ -44,6 +44,9 @@ ActiveAdmin.register Donator do
     link_to 'Rechazar', :refuse_admin_donator, method: :put unless resource.rejected? || resource.validated?
   end
 
+  action_item :update_status, only: :index do
+    link_to 'Actualizar Estado', :update_status, method: :post
+  end
 
   show title: proc{| donator | "#{donator.doctype}-#{donator.document} #{number_to_currency donator.amount, locale: :en, unit: "$ ", separator: ",", delimiter: "."}"} do
     panel "Detalles de la donacion" do
