@@ -1,0 +1,67 @@
+<div class="card" id="formulario">
+  <div class="card-section">
+    <%= form_with(model: donator, local: true, url: update_donator_path, method: 'patch') do |form| %>
+      <% if donator.errors.any? %>
+        <div class="callout alert">
+          <h5><%= t('.error') %></h5>
+
+          <ul>
+          <% donator.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.number_field :document, id: :donator_document %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :firstname, id: :donator_firstname %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :lastname, id: :donator_lastname %>
+      </div>
+
+      <div class="field">
+        <%= form.phone_field :mobilephone, id: :donator_mobilephone %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :job, id: :donator_job %>
+      </div>
+
+      <div class="field">
+        <%= form.email_field :email, id: :donator_email %>
+      </div>
+
+      <div class="field">
+        <%= form.text_area :address, id: :donator_email %>
+      </div>
+
+      <div class="field">
+        <%= form.file_field :rut_image, id: :donator_rut_image, accept: 'image/png,image/gif,image/jpeg,application/pdf' %>
+      </div>
+
+      <div class="field">
+        <%= form.file_field :doc_image, id: :donator_doc_image, accept: 'image/png,image/gif,image/jpeg,application/pdf' %>
+      </div>
+      <div class="field">
+        <label>Monto</label>
+        <p id="amount_holder">$0</p>
+      </div>
+      <div class="slider" data-slider data-initial-start="20000" data-step="5000" data-end="5000000">
+        <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="donator_amount"></span>
+        <span class="slider-fill" data-slider-fill=""></span>
+      </div>
+      <%= form.hidden_field :amount, id: :donator_amount %>
+      <div class="actions">
+        <%= form.submit "Realizar Donación", class: "button expanded"  %>
+      </div>
+    <% end %>
+  </div>
+
+
+</div>

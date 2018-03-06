@@ -1,5 +1,5 @@
 class DonatorsController < ApplicationController
-  before_action :set_donator, only: [:show, :pagado, :pagado_callback]
+  before_action :set_donator, only: [:show, :pagado, :pagado_callback, :edit, :update]
   protect_from_forgery except: :pagado_callback
   # GET /donators
   # GET /donators.json
@@ -10,6 +10,7 @@ class DonatorsController < ApplicationController
   # GET /donators/1
   # GET /donators/1.json
   def show
+    redirect_to :root unless @donator.validated?
   end
 
   def validating
@@ -21,8 +22,8 @@ class DonatorsController < ApplicationController
   end
 
   # GET /donators/1/edit
-  # def edit
-  # end
+  def edit
+  end
 
   # POST /donators
   # POST /donators.json
@@ -44,18 +45,29 @@ class DonatorsController < ApplicationController
 
   # PATCH/PUT /donators/1
   # PATCH/PUT /donators/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @donator.update(donator_params)
-  #       format.html { redirect_to @donator, notice: 'Donator was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @donator }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @donator.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
+  def update
+    respond_to do |format|
+      if @donator.update(donator_params)
+        @donator.update rejected: false
+        format.html { redirect_to validating_url, notice: 'Donator was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+  STATUSES = {
+    "1" => "Aceptada",
+    "2" => "Rechazada",
+    "3" => "Pendiente",
+    "4" => "Fallida",
+    "6" => "Reversada",
+    "7" => "Retenida",
+    "8" => "Iniciada",
+    "9" => "Exprirada",
+    "10" => "Abandonada",
+    "11" => "Cancelada",
+    "12" => "Antifraude"
+  }
   # DELETE /donators/1
   # DELETE /donators/1.json
   # def destroy
@@ -73,6 +85,7 @@ class DonatorsController < ApplicationController
   def pagado_callback
     render json: {error: "error"}, status: :unprocessable_entity if params[:x_ref_payco].nil?
     @donator.update(epayco_params)
+    @donator.update status: STATUSES[@donator.x_cod_response]
     render json: {ok: "ok"}, status: :ok
 
   end

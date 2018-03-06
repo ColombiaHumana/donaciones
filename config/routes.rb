@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/', to: 'donators#create'
   get '/validando', to: 'donators#validating', as: :validating
   get '/:slug', to: 'donators#show', as: :donator
+  patch '/:slug', to: 'donators#update', as: :update_donator
+  get '/:slug/edit', to: 'donators#edit', as: :edit_donator
   get '/:slug/pagado', to: 'donators#pagado', as: :donator_pagado
   post '/:slug', to: 'donators#pagado_callback', as: :pagado_callback
 

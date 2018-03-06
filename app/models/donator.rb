@@ -8,6 +8,7 @@ class Donator < ApplicationRecord
   validates_numericality_of :amount, greater_than_or_equal_to: 5_000, less_than_or_equal_to: 5_000_000_000
   validates_with AttachmentSizeValidator, attributes: :doc_image, less_than: 5.megabytes
   validates_with AttachmentSizeValidator, attributes: :rut_image, less_than: 5.megabytes
+  belongs_to :admin_user, optional: true
   private
   def add_slug
     self.slug = SecureRandom.uuid
