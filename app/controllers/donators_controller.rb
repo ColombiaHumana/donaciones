@@ -83,7 +83,7 @@ class DonatorsController < ApplicationController
     Donator.where('x_ref_payco != ""').each do |donator|
       json = get_ref_payco(donator.x_ref_payco)
       if json['success'] == true
-        status = STATUSES[json['data']['x_cod_response'].to_s] || 'INVALIDA'
+        status = json['data']['x_response'] || 'INVALIDA'
         donator.update status: status, x_cod_response: json['data']['x_cod_response']
       end
     end
