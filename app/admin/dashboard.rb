@@ -2,7 +2,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
-  content title: proc{ I18n.t("active_admin.dashboard") } do
+  content title: proc{ "Total efectivas: #{number_to_currency Donator.where(status: "Aceptada").sum(:amount), locale: :en, unit: "$ ", separator: ",", delimiter: "."}" } do
     columns do
       column do
         panel "Donaciones Por Moderar" do
