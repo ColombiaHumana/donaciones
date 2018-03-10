@@ -18,6 +18,7 @@ class DonatorsController < ApplicationController
 
   # GET /donators/new
   def new
+    redirect_to "https://petro.com.co"
     @donator = Donator.new
   end
 
