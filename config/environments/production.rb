@@ -21,7 +21,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
   config.assets.initialize_on_precompile = false
   config.assets.precompile += %w( active_admin.js active_admin.css.scss )
   # Compress JavaScripts and CSS.
@@ -48,7 +48,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: 'petro.com.co', port: 25 }
+  config.action_mailer.smtp_settings = { address: 'mail.petro.com.co', port: 587 }
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug

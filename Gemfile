@@ -23,7 +23,7 @@ gem 'pundit'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem 'rails', '~> 5.1.5'
 gem 'rest-client'
-gem 'sqlite3'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem "paperclip", "~> 5.2.1"
