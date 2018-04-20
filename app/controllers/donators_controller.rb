@@ -81,7 +81,7 @@ class DonatorsController < ApplicationController
 
   def update_status
     redirect_to :root unless current_admin_user
-    Donator.where('x_ref_payco != ""').each do |donator|
+    Donator.where.not(x_ref_payco: [nil, '']).each do |donator|
       json = get_ref_payco(donator.x_ref_payco)
       if json['success'] == true
         status = json['data']['x_response'] || 'INVALIDA'
