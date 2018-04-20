@@ -19,7 +19,7 @@ ActiveAdmin.register Donator do
     column :document
     column :firstname
     column :lastname
-    column :amount
+    column('Monto') { |donator| number_to_currency donator.amount, locale: :en, unit: "$ ", separator: ",", delimiter: "."}
 
     actions
   end

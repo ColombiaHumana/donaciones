@@ -20,7 +20,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Donaciones Efectivas" do
           table_for Donator.where(validated: true).order("id desc").limit(20) do
             column("Estado") { |donator| status_tag(donator.status) }
-            column("Monto") { |donator| number_to_currency donator.amount }
+            column("Monto") { |donator| number_to_currency donator.amount, locale: :en, unit: "$ ", separator: ",", delimiter: "." }
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
             column("Validado Por") { |donator| "#{donator.admin_user.email}" unless donator.admin_user.nil? }
