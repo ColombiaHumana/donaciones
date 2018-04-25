@@ -15,5 +15,8 @@ ActiveAdmin.register Log do
 
   index do
     column("Auditoria"){|log| log.text }
+    column("Donacion"){|log| link_to "#{log.donator.doctype}-#{log.donator.document}", admin_donator_path(log.donator) unless log.donator.nil?}
+    column("Responsable"){|log| link_to log.admin_user.email, admin_admin_users_path(log.admin_user) unless log.admin_user.nil?}
+
   end
 end

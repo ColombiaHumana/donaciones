@@ -4,4 +4,8 @@ class AdminUser < ApplicationRecord
   has_many :donators
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def to_s
+    self.email
+  end
 end

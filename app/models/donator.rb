@@ -9,9 +9,15 @@ class Donator < ApplicationRecord
   validates_with AttachmentSizeValidator, attributes: :doc_image, less_than: 5.megabytes
   validates_with AttachmentSizeValidator, attributes: :rut_image, less_than: 5.megabytes
   belongs_to :admin_user, optional: true
+
+  def to_s
+    "#{self.doctype}-#{self.document}"
+  end
   private
   def add_slug
     self.slug = SecureRandom.uuid
     self.doctype = 'CC'
   end
+
+
 end
