@@ -30,19 +30,19 @@ permit_params :reason, :rejected
     redirect_to resource_path, notice: "Donacion validada!"
   end
 
-  member_action :refuse, method: :put do
-    resource.update rejected: true, validated: false, admin_user: current_admin_user
-    DonatorMailer.refused_email(resource).deliver_later
-    redirect_to resource_path, notice: "Donacion Rechazada!"
-  end
+  # member_action :refuse, method: :put do
+  #   resource.update rejected: true, validated: false, admin_user: current_admin_user
+  #   DonatorMailer.refused_email(resource).deliver_later
+  #   redirect_to resource_path, notice: "Donacion Rechazada!"
+  # end
 
   action_item :verify, only: :show do
     link_to 'Verificar', :validate_admin_donator, method: :put unless resource.validated? || resource.rejected?
   end
 
-  action_item :reject, only: :show do
-    link_to 'Rechazar', :refuse_admin_donator, method: :put unless resource.rejected? || resource.validated?
-  end
+  # action_item :reject, only: :show do
+  #   link_to 'Rechazar', :refuse_admin_donator, method: :put unless resource.rejected? || resource.validated?
+  # end
 
   action_item :update_status, only: :index do
     link_to 'Actualizar Estado', :update_status, method: :post
