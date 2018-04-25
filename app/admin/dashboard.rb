@@ -39,6 +39,7 @@ ActiveAdmin.register_page "Dashboard" do
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
             column("Rechazado Por") { |donator| "#{donator.admin_user.email}" unless donator.admin_user.nil? }
+            column("Razón") { |donator| donator.reason }
             column("Ver") { |donator| link_to("Ver", admin_donator_path(donator)) }
           end
         end

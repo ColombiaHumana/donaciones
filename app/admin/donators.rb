@@ -2,7 +2,7 @@ ActiveAdmin.register Donator do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :reason, :rejected
 #
 # or
 #
@@ -11,7 +11,7 @@ ActiveAdmin.register Donator do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  actions :index, :show
+  actions :index, :show, :edit, :update
 
   index do
     column("Verificado"){|donator| status_tag(donator.validated) }
@@ -82,6 +82,23 @@ ActiveAdmin.register Donator do
           end
         end
       end
+    end
+  end
+
+  form title: "Rechazar Donación" do |f|
+    inputs do
+      input :reason
+    end
+
+    para "Preciona cancelar para volver a la lista"
+    actions
+  end
+
+  controller do
+    def update
+      resource.update  reason: params[:donator][:reason], rejected: true
+      DonatorMailer.refused_email(resource).deliver_later
+      redirect_to resource_path, notice: "Donacion Rechazada!"
     end
   end
 end

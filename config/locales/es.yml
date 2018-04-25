@@ -19,6 +19,7 @@ es:
         mobilephone: Teléfono
         address: Dirección
         job: Profesion u Oficio
+        reason: Razón
     create: Realizar donación
     errors:
       template:
