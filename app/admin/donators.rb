@@ -26,6 +26,7 @@ permit_params :reason, :rejected
 
   member_action :validate, method: :put do
     resource.update validated: true, rejected: false, admin_user: current_admin_user
+    Log.create text: "#{current_admin_user.email} realizó la validación de la donación #{resource.doctype}-#{resource.document}"
     DonatorMailer.validated_email(resource).deliver_later unless !resource.validated?
     redirect_to resource_path, notice: "Donacion validada!"
   end
@@ -96,8 +97,9 @@ permit_params :reason, :rejected
 
   controller do
     def update
+      DonatorMailer.refused_email(resource).deliver_later unless resource.rejected
       resource.update  reason: params[:donator][:reason], rejected: true
-      DonatorMailer.refused_email(resource).deliver_later
+      Log.create text: "#{current_admin_user.email} rechazó la donación #{resource.doctype}-#{resource.document}"
       redirect_to resource_path, notice: "Donacion Rechazada!"
     end
   end
