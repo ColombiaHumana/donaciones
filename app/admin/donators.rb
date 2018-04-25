@@ -97,9 +97,11 @@ permit_params :reason, :rejected
 
   controller do
     def update
-      DonatorMailer.refused_email(resource).deliver_later unless resource.rejected
-      Log.create text: "#{current_admin_user.email} rechazó la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource unless resource.rejected
-      resource.update  reason: params[:donator][:reason], rejected: true
+      if !resource.rejected?
+        resource.update  reason: params[:donator][:reason], rejected: true, admin_user: current_admin_user
+        DonatorMailer.refused_email(resource).deliver_later
+        Log.create text: "#{current_admin_user.email} rechazó la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource
+      end
       redirect_to resource_path, notice: "Donacion Rechazada!"
     end
   end
