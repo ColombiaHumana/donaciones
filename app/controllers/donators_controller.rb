@@ -49,7 +49,7 @@ class DonatorsController < ApplicationController
   def update
     respond_to do |format|
       if @donator.update(donator_params)
-        @donator.update rejected: false
+        @donator.update rejected: false, reason: ""
         format.html { redirect_to validating_url, notice: 'Donator was successfully updated.' }
       else
         format.html { render :edit }

@@ -11,7 +11,13 @@ permit_params :reason, :rejected
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  actions :index, :show, :edit, :update
+  actions :index, :edit, :show, :update
+  config.action_items.delete_if { |item| item.display_on?(:show) }
+  action_item only: :show do
+    if !resource.validated? && !resource.rejected
+      link_to "Rechazar", edit_resource_path(resource)
+    end
+  end
 
   index do
     column("Verificado"){|donator| status_tag(donator.validated) }
@@ -25,10 +31,12 @@ permit_params :reason, :rejected
   end
 
   member_action :validate, method: :put do
-    resource.update validated: true, rejected: false, admin_user: current_admin_user
-    Log.create text: "#{current_admin_user.email} realizó la validación de la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource
-    DonatorMailer.validated_email(resource).deliver_later unless !resource.validated?
-    redirect_to resource_path, notice: "Donacion validada!"
+    if !resource.rejected?
+      resource.update validated: true, rejected: false, admin_user: current_admin_user
+      Log.create text: "#{current_admin_user.email} realizó la validación de la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource
+      DonatorMailer.validated_email(resource).deliver_later unless !resource.validated?
+      redirect_to resource_path, notice: "Donacion validada!"
+    end
   end
 
   # member_action :refuse, method: :put do
@@ -97,12 +105,12 @@ permit_params :reason, :rejected
 
   controller do
     def update
-      if !resource.rejected?
-        resource.update  reason: params[:donator][:reason], rejected: true, admin_user: current_admin_user
+      if !resource.rejected? && !resource.validated?
+        resource.update  reason: params[:donator][:reason], rejected: true, validated: false, admin_user: current_admin_user
         DonatorMailer.refused_email(resource).deliver_later
         Log.create text: "#{current_admin_user.email} rechazó la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource
+        redirect_to resource_path, notice: "Donacion Rechazada!"
       end
-      redirect_to resource_path, notice: "Donacion Rechazada!"
     end
   end
 end
