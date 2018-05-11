@@ -13,11 +13,12 @@ class Donator < ApplicationRecord
   def to_s
     "#{self.doctype}-#{self.document}"
   end
+
   private
+
   def add_slug
     self.slug = SecureRandom.uuid
     self.doctype = 'CC'
+    self.address = self.address.squish
   end
-
-
 end
