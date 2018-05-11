@@ -1,5 +1,5 @@
 
-<script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+<script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -22,7 +22,7 @@ $(document).ready(function() {
     response: "https://petro.com.co/gracias-por-donar/",
     name_billing: "<%= "#{@donator.firstname} #{@donator.lastname}" %>",
     email_billing: "<%= @donator.email %>",
-    address_billing: "<%= @donator.address %>",
+    address_billing: "<%= @donator.address.tr('\n',' ').tr('\r',' ') %>",
     type_doc_billing: "<%= @donator.doctype %>",
     number_doc_billing: "<%= @donator.document %>",
     mobilephone_billing: "<%= @donator.mobilephone %>"
