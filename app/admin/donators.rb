@@ -30,7 +30,7 @@ permit_params :reason, :rejected
     actions
   end
 
-  member_action :validate, method: :put do
+  member_action :validate, method: :get do
     if !resource.rejected?
       resource.update validated: true, rejected: false, admin_user: current_admin_user
       Log.create text: "#{current_admin_user.email} realizó la validación de la donación #{resource.doctype}-#{resource.document}", admin_user: current_admin_user, donator: resource
@@ -46,7 +46,7 @@ permit_params :reason, :rejected
   # end
 
   action_item :verify, only: :show do
-    link_to 'Verificar', :validate_admin_donator, method: :put unless resource.validated? || resource.rejected?
+    link_to 'Verificar', validate_admin_donator_path(resource) unless resource.validated? || resource.rejected?
   end
 
   # action_item :reject, only: :show do
