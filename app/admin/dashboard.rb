@@ -12,6 +12,7 @@ ActiveAdmin.register_page "Dashboard" do
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
             column("Ver") { |donator| link_to("Ver", admin_donator_path(donator)) }
+            column('Solicitud hace') { |donator| time_ago_in_words donator.created_at }
           end # table
         end # panel
       end # column
@@ -24,7 +25,8 @@ ActiveAdmin.register_page "Dashboard" do
             column("CC") { |donator| "#{donator.doctype}-#{donator.document}" }
             column("Nombres") { |donator| "#{donator.firstname} #{donator.lastname}" }
             column("Validado Por") { |donator| "#{donator.admin_user.email}" unless donator.admin_user.nil? }
-              column("Ver") { |donator| link_to("Ver", admin_donator_path(donator)) }
+            column("Ver") { |donator| link_to("Ver", admin_donator_path(donator)) }
+            column('Solicitud hace') { |donator| time_ago_in_words donator.created_at }
           end #table
         end #panel
       end # column
@@ -41,6 +43,7 @@ ActiveAdmin.register_page "Dashboard" do
             column("Rechazado Por") { |donator| "#{donator.admin_user.email}" unless donator.admin_user.nil? }
             column("Razón") { |donator| donator.reason }
             column("Ver") { |donator| link_to("Ver", admin_donator_path(donator)) }
+            column('Rechazado hace') { |donator| time_ago_in_words donator.updated_at }
           end
         end
       end

@@ -21,12 +21,13 @@ permit_params :reason, :rejected
 
   index do
     column("Verificado"){|donator| status_tag(donator.validated) }
+    column("Rechazado"){|donator| status_tag(donator.rejected) }
     column ("Estado") { |donator| status_tag(donator.status) }
     column :document
     column :firstname
     column :lastname
     column('Monto') { |donator| number_to_currency donator.amount, locale: :en, unit: "$ ", separator: ",", delimiter: "."}
-
+    column('Solicitud hace') { |donator| time_ago_in_words donator.created_at }
     actions
   end
 
